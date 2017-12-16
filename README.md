@@ -1,38 +1,24 @@
 # kodi-docker-gui
-Runs kodi GUI from a docker container. Please note that this is a remarke from [leandrocostasouza](https://github.com/leandrocostasouza/mydockers/tree/master/kodi)
+Runs kodi GUI from a docker container.   
 
 ## Building
 ```
-docker build -t kodi-docker-gui .
+docker build -t kodi-docker-gui.   
 ```
 
 
 ## First run
-Prior first start, allow xhost:
-```bash
-xhost +local:docker
+Prior first start, allow xhost:   
+```bash   
+xhost +local:docker   
 ```
 
 ## Docker Compose
-```yaml
-version: "2.0"
-services:
-  kodi:
-    image: xtolza/kodi-docker-gui
-    environment:
-      - DISPLAY
-    ports:
-      - 8080:8080
-    volumes:
-      - <path to your storage>:/home/$USER
-      - /etc/group:/etc/group:ro
-      - /etc/passwd:/etc/passwd:ro
-      - /etc/shadow:/etc/shadow:ro
-      - /etc/sudoers.d:/etc/sudoers.d:ro
-      - /tmp/.X11-unix:/tmp/.X11-unix:rw
-```
+Please check the `.env` file and change it at your conveniance   
+Then: `docker-compose run kodi or docker-compose up`
 
 ## Command-line
 ```bash
-docker run -it --env="DISPLAY" --volume="<path to your storage>:/home/$USER" --volume="/etc/group:/etc/group:ro" --volume="/etc/passwd:/etc/passwd:ro" --volume="/etc/shadow:/etc/shadow:ro" --volume="/etc/sudoers.d:/etc/sudoers.d:ro" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" xtolza/kodi-docker-gui
+docker run -i --device /dev/snd --device=/dev/dri -e DISPLAY -v /home/$USER/.kodi:/root/.kodi:rw -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro -v /etc/shadow:/etc/shadow:ro -v /etc/sudoers.d:/etc/sudoers.d:ro -v /tmp/.X11-unix:/tmp/.X11-unix:rw kevin31/kodi-gui   
 ```
+Please check the $USER variable.
