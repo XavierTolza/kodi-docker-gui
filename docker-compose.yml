@@ -1,0 +1,18 @@
+version: "3.0"
+services:
+  kodi:
+    image: kevin31/kodi_gui
+    environment:
+      - DISPLAY
+    ports:
+      - $PORT:$PORT
+    devices:
+      - /dev/snd
+      - /dev/dri
+    volumes:
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/shadow:/etc/shadow:ro
+      - /etc/sudoers.d:/etc/sudoers.d:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - $HOST_PATH:/root/.kodi:rw
