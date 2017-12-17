@@ -31,6 +31,7 @@ services:
       - /etc/sudoers.d:/etc/sudoers.d:ro
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
 ```
+A `docker-compose.yml` file is provided, check and edit the `.env` file when using it.
 
 ## Command-line
 ```bash

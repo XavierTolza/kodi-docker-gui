@@ -1,0 +1,15 @@
+version: "2.0"
+services:
+  kodi:
+    image: xtolza/kodi-docker-gui
+    environment:
+      - DISPLAY
+    ports:
+      - $PORT:8080
+    volumes:
+      - $HOST_PATH:/home/$USER
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/shadow:/etc/shadow:ro
+      - /etc/sudoers.d:/etc/sudoers.d:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
